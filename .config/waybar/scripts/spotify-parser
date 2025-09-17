@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# MIT License
+# 
+# Copyright (c) 2025 Marek Bogusovsky
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+SCROLL_INDEX=0
+NEXT_SCROLL_TIMESTAMP=0
+
+build-text() {
+    local ARTIST="$1"
+    local ALBUM="$2"
+    local TITLE="$3"
+
+    local TEXT=""
+    local DELIM=""
+    [ -n "${ARTIST}" ] && TEXT="${TEXT}${DELIM}${ARTIST}" && DELIM=" - "
+    [ -n "${ALBUM}" ]  && TEXT="${TEXT}${DELIM}${ALBUM}"  && DELIM=" - "
+    [ -n "${TITLE}" ]  && TEXT="${TEXT}${DELIM}${TITLE}"  && DELIM=" - "
+
+    TEXT="${TEXT//&lt/<}"
+    TEXT="${TEXT//&gt/>}"
+    TEXT="${TEXT//&amp/\&}"
+
+    REPLY="${TEXT}"
+}
+
+print-text() {
+    local TEXT="$1"
+    local COLOR="$2"
+    local TOOLTIP="$3"
+
+    jq -M --unbuffered --compact-output -n \
+        --arg text "${TEXT}" \
+        --arg alt "${COLOR}" \
+        --arg tooltip "${TOOLTIP}" \
+        --arg class "spotify-meta" \
+            '{text: $text, alt: $alt, tooltip: $tooltip, class: $class}'
+}
+
+scroll-text() {
+    local TEXT="$1"
+    local COLOR="$2"
+    local MAX_LEN="$3"
+    local LEN=${#TEXT}
+
+    local TIME_MS="$(( ${EPOCHREALTIME/[^0-9]/} / 1000 ))"
+    if (( ${EPOCHREALTIME/[^0-9]/} / 1000 > NEXT_SCROLL_TIMESTAMP )); then
+        ((++SCROLL_INDEX))
+        (( SCROLL_INDEX + 1 > (LEN - MAX_LEN) )) && NEXT_SCROLL_TIMESTAMP="$(( TIME_MS + 1000 ))"
+        (( SCROLL_INDEX > (LEN - MAX_LEN) )) && SCROLL_INDEX=0 && NEXT_SCROLL_TIMESTAMP="$(( TIME_MS + 1000 ))"
+    fi
+
+    print-text "${TEXT:${SCROLL_INDEX}:${MAX_LEN}}" "${COLOR}" "${TEXT}"
+}
+
+main() {
+    local MAX_LEN=${1:-80}
+    local STATUS ALBUM ARTIST TITLE TEXT COLOR
+
+    while IFS='␞' read -r STATUS ALBUM ARTIST TITLE; do
+        build-text "${ARTIST}" "${ALBUM}" "${TITLE}"
+        TEXT="${REPLY}"
+        TEXT_LEN="${#TEXT}"
+        COLOR="red"
+        [ "${STATUS}" = "Playing" ] && COLOR="green"
+
+        if (( TEXT_LEN > MAX_LEN )); then
+            while true; do
+                if IFS='␞' read -t 0.2 -r STATUS ALBUM ARTIST TITLE; then
+                    build-text "${ARTIST}" "${ALBUM}" "${TITLE}"
+                    TEXT="${REPLY}"
+                    TEXT_LEN="${#TEXT}"
+                    if (( TEXT_LEN <= MAX_LEN )); then
+                        print-text "${TEXT}" "${COLOR}" "${TEXT}"
+                        break
+                    fi
+
+                    COLOR="red"
+                    [ "${STATUS}" = "Playing" ] && COLOR="green"
+                fi
+                scroll-text "${TEXT}" "${COLOR}" "${MAX_LEN}"
+            done
+        else
+            print-text "${TEXT}" "${COLOR}" "${TEXT}"
+        fi
+    done
+}
+
+main "$@"

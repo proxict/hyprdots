@@ -1,0 +1,10 @@
+configuration {
+    show-icons:      true;
+}
+
+@theme "themes/spotlight-dark.rasi"
+
+entry {
+    placeholder:        "";
+    placeholder-color:  @fg3;
+}

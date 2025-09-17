@@ -1,0 +1,6 @@
+[Unit]
+Description=Hyprland Wayland Compositor
+Documentation=man:systemd.special
+BindsTo=graphical-session.target
+Wants=graphical-session.target
+After=graphical-session.target

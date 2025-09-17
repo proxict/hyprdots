@@ -1,0 +1,62 @@
+#!/bin/bash
+
+function hyprsunsetCmd() {
+    local RUNTIMEDIR="${XDG_RUNTIME_DIR}"
+    [ -z "${RUNTIMEDIR}" ] && RUNTIMEDIR="/run/user/${UID}"
+    echo "$*" | socat - "UNIX-CONNECT:${RUNTIMEDIR}/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.hyprsunset.sock"
+}
+
+function reportTemperature() {
+    local TEMPERATURE
+    TEMPERATURE="$(hyprsunsetCmd temperature)"
+
+    #local PERCENTAGE=50
+    #local NORMALIZED=0
+    #local SIGN=""
+    #if [ "${TEMPERATURE}" -lt 6000 ]; then
+    #    NORMALIZED=$(( 100 - (TEMPERATURE - 1000) / 50 ))
+    #    SIGN="-"
+    #    PERCENTAGE=$(( PERCENTAGE - NORMALIZED / 2 ))
+    #elif [ "${TEMPERATURE}" -gt 6000 ]; then
+    #    NORMALIZED=$(( 100 + (TEMPERATURE - 20000) / 140 ))
+    #    SIGN="+"
+    #    PERCENTAGE=$(( PERCENTAGE + NORMALIZED / 2 ))
+    #fi
+
+    local PERCENTAGE=0
+    if [ "${TEMPERATURE}" -lt 6000 ]; then
+        PERCENTAGE=$(( 100 - (TEMPERATURE - 1000) / 50 ))
+    fi
+
+    jq -M --unbuffered --compact-output -n \
+        --arg text "${TEMPERATURE}" \
+        --arg tooltip "${TEMPERATURE} K" \
+        --arg percentage "${PERCENTAGE}" \
+        --arg class "hyprsunset-temp" \
+            '{text: $text, tooltip: $tooltip, class: $class, percentage: $percentage|tonumber}'
+}
+
+function reportGamma() {
+    local GAMMA
+    GAMMA="$(hyprsunsetCmd gamma)"
+
+    jq -M --unbuffered --compact-output -n \
+        --arg text "${GAMMA}" \
+        --arg tooltip "Hyprsunset gamma" \
+        --arg percentage "${GAMMA}" \
+        --arg class "hyprsunset-gamma" \
+            '{text: $text, tooltip: $tooltip, class: $class, percentage: $percentage|tonumber}'
+}
+
+case "${1,,}" in # lowercase
+    (temperature) reportTemperature ;;
+    (gamma) reportGamma ;;
+    (reset) hyprsunsetCmd "temperature 6000"; hyprsunsetCmd "gamma 100"; hyprsunsetCmd "identity" ;;
+    (night) hyprsunsetCmd "temperature 2800";  hyprsunsetCmd "gamma 50" ;;
+    (warmer) hyprsunsetCmd "temperature -250" ;;
+    (colder) hyprsunsetCmd "temperature +250" ;;
+    (darker) hyprsunsetCmd "gamma -10" ;;
+    (lighter) hyprsunsetCmd "gamma +10" ;;
+esac
+
+

@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# MIT License
+# 
+# Copyright (c) 2025 Marek Bogusovsky
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+STATUS_RAW="$(nordvpn status)"
+
+function connected() {
+    echo "${STATUS_RAW}" | grep "Status: Connected" &>/dev/null
+    return $?
+}
+
+if [ "${1}" = "notify" ]; then
+    notify-send \
+        -i /usr/share/icons/hicolor/scalable/apps/nordvpn.svg \
+        "NordVPN" \
+        "$({ connected && echo "${STATUS_RAW}" | sed -E '1s|^.*(A new version.*$)|<b>\r\1\r</b>|g; /Status:|Current /d'; } || echo "Disconnected")"
+    exit 0
+elif [ "${1}" = "toggle" ]; then
+    if connected; then
+        nordvpn disconnect > /dev/null
+    else
+        notify-send -i /var/lib/nordvpn/icon.svg "Finding the fastest server..."
+        nordvpn connect > /dev/null
+    fi
+fi
+
+TEXT=""
+STATUS="disconnected"
+TOOLTIP="$(echo "${STATUS_RAW}" | grep "IP:")"
+
+connected && STATUS="connected" && TEXT=" $(echo "${STATUS_RAW}" | awk '/^Hostname: / { print $2 }' | cut -d \. -f 1)"
+
+jq -M --unbuffered --compact-output -n \
+    --arg text "${TEXT}" \
+    --arg alt "${STATUS}" \
+    --arg tooltip "${TOOLTIP}" \
+    --arg class "vpn" \
+        '{text: $text, alt: $alt, tooltip: $tooltip, class: $class}'

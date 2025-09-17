@@ -1,0 +1,26 @@
+/.config/*
+!/.config/btop
+!/.config/dunst
+!/.config/gsimplecal
+!/.config/gtk-2.0
+!/.config/gtk-3.0
+!/.config/gtk-4.0
+!/.config/htop
+!/.config/hypr
+!/.config/kitty
+!/.config/rofi
+!/.config/swayimg
+!/.config/waybar
+
+# qutebrowser
+!/.config/qutebrowser
+/.config/qutebrowser/*
+!/.config/qutebrowser/greasemonkey
+!/.config/qutebrowser/userscripts
+!/.config/qutebrowser/config.py
+!/.config/qutebrowser/keys.py
+
+# Hyprland
+!/.config/systemd
+/.config/systemd/*/*
+!/.config/systemd/user/hyprland.target
