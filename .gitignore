@@ -1,3 +1,6 @@
+##############
+### CONFIG ###
+##############
 /.config/*
 !/.config/btop
 !/.config/dunst
@@ -24,3 +27,21 @@
 !/.config/systemd
 /.config/systemd/*/*
 !/.config/systemd/user/hyprland.target
+
+###########
+### BIN ###
+###########
+/.bin/*
+!/.bin/bd
+!/.bin/blur
+!/.bin/cecho
+!/.bin/hide-desktop-entry
+!/.bin/mem-hogs
+!/.bin/rofi-pinentry
+!/.bin/s
+!/.bin/svc
+!/.bin/tb
+!/.bin/to-pdf
+!/.bin/transfer
+!/.bin/unix-art
+!/.bin/untilfail
