@@ -24,6 +24,10 @@
 !/.config/qutebrowser/keys.py
 
 # Hyprland
+/.config/hypr/modules/env.conf
+/.config/hypr/modules/monitors.conf
+/.config/hypr/modules/devices.conf
+
 !/.config/systemd
 /.config/systemd/*/*
 !/.config/systemd/user/hyprland.target
