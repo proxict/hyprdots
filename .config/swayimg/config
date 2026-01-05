@@ -38,7 +38,7 @@ app_id = swayimg
 ################################################################################
 [viewer]
 # Window background color (auto/extend/mirror/RGBA)
-window = #00000000
+window = #000000ff
 # Background for transparent images (grid/RGBA)
 transparency = grid
 # Default image scale (optimal/width/height/fit/fill/real/keep)
@@ -48,11 +48,11 @@ position = center
 # Anti-aliasing mode (none/box/bilinear/bicubic/mks13)
 antialiasing = mks13
 # Loop image list: jump to first image when end of list is reached (yes/no)
-loop = yes
+loop = no
 # Number of previously viewed images to store in cache
-history = 1
+history = 5
 # Number of preloaded images (read ahead)
-preload = 1
+preload = 5
 
 ################################################################################
 # Slideshow mode configuration
@@ -76,27 +76,31 @@ antialiasing = mks13
 ################################################################################
 [gallery]
 # Height and width of each thumbnail (pixels)
-size = 200
+size = 300
+# Padding of each thumbnail (pixels)
+padding = 25
 # Max number of invisible thumbnails stored in memory cache
 cache = 100
 # Load not only visible but also adjacent thumbnails
 preload = no
 # Enable/disable storing thumbnails in persistent storage (yes/no)
-pstore = no
-# Fill the entire tile with thumbnail (yes/no)
-fill = yes
+pstore = yes
+# Thumbnail aspect ratio (fit/fill/keep)
+aspect = keep
 # Anti-aliasing mode for thumbnails (none/box/bilinear/bicubic/mks13)
 antialiasing = mks13
 # Background color of the window (RGBA)
-window = #00000000
+window = #000000AC
 # Background color of non-selected tiles (RGBA)
-background = #202020ff
+background = #808080ff
 # Background color of the selected tile (RGBA)
-select = #404040ff
+select = #808080ff
 # Border color of the selected tile (RGBA)
-border = #000000ff
-# Shadow color of the selected tile (RGBA)
-shadow = #000000ff
+border_color = #acacacff
+# Border width of the selected tile (pixels)
+border_width = 3
+# Scale of the selected tile (float)
+selected_scale = 1.2
 
 ################################################################################
 # Image list configuration
@@ -133,7 +137,7 @@ background = #00000000
 ################################################################################
 [info]
 # Show on startup (yes/no)
-show = yes
+show = no
 # Timeout to hide info (seconds, 0 to always show)
 info_timeout = 5
 # Timeout to hide status message (seconds)
@@ -165,11 +169,14 @@ bottom_right = name,status
 ################################################################################
 [keys.viewer]
 F1 = help
+Shift+question = help
 Home = first_file
 End = last_file
-Prior = prev_file
-Next = next_file
-Space = next_file
+Left = prev_file
+Right = next_file
+h = prev_file
+l = next_file
+Space = mode gallery
 Shift+r = rand_file
 Shift+d = prev_dir
 d = next_dir
@@ -178,27 +185,29 @@ o = next_frame
 c = skip_file
 s = mode slideshow
 n = animation
-f = fullscreen
+f = none
 Return = mode gallery
-Left = step_left 10
-Right = step_right 10
-Up = step_up 10
-Down = step_down 10
-Equal = zoom +10
-Plus = zoom +10
+
+Shift+Left = step_left 10
+Shift+Right = step_right 10
+Shift+Up = step_up 10
+Shift+Down = step_down 10
+
+Shift+plus = zoom +10
 Minus = zoom -10
-w = zoom width
-Shift+w = zoom height
-z = zoom fit
-Shift+z = zoom fill
-0 = zoom real
+Equal = zoom optimal
+
+k = zoom +10
+j = zoom -10
+w = zoom fit
+Shift+w = zoom fill
 BackSpace = zoom optimal
-k = zoom keep
-Alt+s = zoom
+0 = zoom real
+Alt+s = none
 bracketleft = rotate_left
 bracketright = rotate_right
-m = flip_vertical
-Shift+m = flip_horizontal
+Shift+f = flip_vertical
+f = flip_horizontal
 a = antialiasing
 r = reload
 i = info
@@ -206,25 +215,27 @@ Shift+Delete = exec rm -f '%' && echo "File removed: %"; skip_file
 Escape = exit
 q = exit
 # Mouse related
-ScrollLeft = step_right 5
-ScrollRight = step_left 5
+ScrollLeft = step_left 5
+ScrollRight = step_right 5
 ScrollUp = step_up 5
 ScrollDown = step_down 5
 Ctrl+ScrollUp = zoom +10
 Ctrl+ScrollDown = zoom -10
-Shift+ScrollUp = prev_file
-Shift+ScrollDown = next_file
-Alt+ScrollUp = prev_frame
-Alt+ScrollDown = next_frame
+Shift+ScrollUp = none
+Shift+ScrollDown = none
+Alt+ScrollUp = none
+Alt+ScrollDown = none
 MouseLeft = drag
-MouseSide = prev_file
-MouseExtra = next_file
+MouseRight = mode gallery
+MouseSide = none
+MouseExtra = none
 
 ################################################################################
 # Slideshow mode key binding configuration: key = action [parameters]
 ################################################################################
 [keys.slideshow]
 F1 = help
+Shift+question = help
 Home = first_file
 End = last_file
 Prior = prev_file
@@ -234,7 +245,7 @@ Shift+d = prev_dir
 d = next_dir
 Space = pause
 i = info
-f = fullscreen
+f = none
 Return = mode
 Escape = exit
 q = exit
@@ -244,30 +255,36 @@ q = exit
 ################################################################################
 [keys.gallery]
 F1 = help
-Home = first_file
-End = last_file
+Shift+question = help
+Shift+Left = first_file
+Shift+Right = last_file
 Left = step_left
 Right = step_right
 Up = step_up
 Down = step_down
+h = step_left
+l = step_right
+k = step_up
+j = step_down
 Prior = page_up
 Next = page_down
 c = skip_file
 s = mode slideshow
-f = fullscreen
+f = none
 Return = mode viewer
+Space = mode viewer
 a = antialiasing
 r = reload
 i = info
-Equal = thumb +20
-Plus = thumb +20
+Equal = none
+Shift+plus = thumb +20
 Minus = thumb -20
 Shift+Delete = exec rm -f '%' && echo "File removed: %"; skip_file
 Escape = exit
 q = exit
 # Mouse related
-ScrollLeft = step_right
-ScrollRight = step_left
+ScrollLeft = none
+ScrollRight = none
 ScrollUp = step_up
 ScrollDown = step_down
 Ctrl+ScrollUp = thumb +20
