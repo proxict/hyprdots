@@ -136,6 +136,7 @@ config.bind('yd', 'yank domain')
 config.bind('yp', 'yank pretty-url')
 config.bind('yt', 'yank title')
 config.bind('yy', 'yank')
+config.bind('yh', 'hint links yank')
 config.bind('{{', 'navigate prev -t')
 config.bind('}}', 'navigate next -t')
 config.bind(',f', 'open -t {primary}')
@@ -205,7 +206,7 @@ config.bind(',f', 'open -t {primary}')
 # config.bind('<Return>', 'hint-follow', mode='hint')
 
 ## Bindings for insert mode
-config.bind('<Ctrl-E>', 'edit-text', mode='insert')
+config.bind('<Ctrl-Shift-E>', 'edit-text', mode='insert')
 config.bind('<Escape>', 'mode-leave', mode='insert')
 config.bind('<Shift-Ins>', 'insert-text {primary}', mode='insert')
 
