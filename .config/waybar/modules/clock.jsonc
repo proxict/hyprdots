@@ -1,0 +1,9 @@
+{
+    "clock": {
+        "locale": "en_GB.UTF-8",
+        "interval": 1,
+        "format": " {:%H:%M:%S}",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exec '[move (cursor_x-window_w) 35] gsimplecal'"
+    }
+}

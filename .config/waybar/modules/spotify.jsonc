@@ -1,0 +1,32 @@
+{
+    "custom/spotify": {
+        "exec": "~/.config/waybar/scripts/spotify 100", // Text will be scrolled after 60 characters
+        "return-type": "json",
+        "format": "{icon} {text}",
+        "format-icons": {
+            "green": "<span foreground='#A3BE8C'></span>",
+            "red": "<span foreground='#BF6161'></span>",
+        },
+        "max-length": 100,
+        "hide-empty-text": true,
+        "on-click": "playerctl --player=spotify play-pause",
+        "on-click-right": "hyprctl dispatch focuswindow class:^spotify$",
+        "on-click-middle": "hyprctl dispatch focuswindow class:^spotify$",
+        "on-scroll-down": "playerctl --player=spotify volume 0.05-",
+        "on-scroll-up": "playerctl --player=spotify volume 0.05+"
+    },
+    "custom/spotify-prev": {
+        "exec": "playerctl --player=spotify status --follow",
+        "hide-empty-text": true,
+        "tooltip": false,
+        "format": "",
+        "on-click": "playerctl --player=spotify previous"
+    },
+    "custom/spotify-next": {
+        "exec": "playerctl --player=spotify status --follow",
+        "hide-empty-text": true,
+        "tooltip": false,
+        "format": "",
+        "on-click": "playerctl --player=spotify next"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "custom/wayprsunset-temp": {
+        "exec": "~/.config/waybar/scripts/wayprsunset temperature",
+        "interval": 5,
+        "return-type": "json",
+        "format": "󰖔 {icon}",
+        "format-icons": [" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        //"format-icons": [" ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█"],
+        "scroll-step": 5,
+        "on-scroll-down": "~/.config/waybar/scripts/wayprsunset colder",
+        "on-scroll-up": "~/.config/waybar/scripts/wayprsunset warmer",
+        "on-click": "~/.config/waybar/scripts/wayprsunset reset",
+        "on-click-middle": "~/.config/waybar/scripts/wayprsunset night"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "memory": {
+        "format": " {used:0.1f} GiB",
+        "tooltip-format": "{percentage}% used",
+        "on-click": "notify-send \" Memory hogs:\" \"$(mem-hogs | head | column -s ';' -t)\""
+    }
+}

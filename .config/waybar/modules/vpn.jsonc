@@ -1,0 +1,15 @@
+{
+    "custom/vpn": {
+        "exec": "~/.config/waybar/scripts/nordvpn",
+        "interval": 5,
+        "return-type": "json",
+        "format": "{icon}{text}",
+        "tooltip": false,
+        "format-icons": {
+            "connected": "<span foreground='#A3BE8C'>󰕥</span>",
+            "disconnected": "<span foreground='#BF6161'>󰦞</span>",
+        },
+        "on-click": "~/.config/waybar/scripts/nordvpn notify",
+        "on-click-middle": "~/.config/waybar/scripts/nordvpn toggle",
+    }
+}

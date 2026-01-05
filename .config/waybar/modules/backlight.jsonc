@@ -1,0 +1,9 @@
+{
+    "backlight": {
+        "format": "{icon} {percent}%",
+        //"on-click": "gdbus call --system --dest org.freedesktop.login1 --object-path /org/freedesktop/login1/session/_31 --method org.freedesktop.login1.Session.SetBrightness backlight amdgpu_bl1 236",
+        "on-click": "brightnessctl -e4 -n236 set 0",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "tooltip": false
+    }
+}

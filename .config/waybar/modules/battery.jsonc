@@ -1,0 +1,17 @@
+{
+    "battery": {
+        "interval": 10,
+        "states": {
+            "good": 70,
+            "warning": 40,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}% ({time})",
+        "format-charging": " {capacity}% ({time})",
+        "format-plugged": " {capacity}% ({time})",
+        "format-alt": "{icon} {capacity}% ({time})",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "Currently drawing {power:0.1f} W"
+    }
+}
