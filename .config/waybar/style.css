@@ -92,7 +92,8 @@ button:hover {
 #custom-media,
 #tray,
 #mode,
-#scratchpad
+#scratchpad,
+#custom-cod-status
 {
     padding: 0 8px;
 }
@@ -123,7 +124,7 @@ button:hover {
 }
 
 #clock {
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: transparent;
     font-size: 16px;
 }
 
@@ -228,7 +229,7 @@ label:focus {
 }
 
 #tray {
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: transparent;
     margin: 0;
     padding: 0;
     padding-right: 5px;
@@ -257,4 +258,320 @@ label:focus {
 
 #scratchpad.empty {
 	background-color: transparent;
+}
+
+
+#custom-cod-status {
+	background-color: #353535;
+}
+
+/* Generated using this bash script:
+ * for i in {0..100}; do
+ *     echo "#custom-cod-status.c${i} {"
+ *     echo -n '    color: '; color-map "#BF6161" "#A3BE8C" "$i" | tr -d '\n'; echo ';'
+ *     echo '}'
+ * done
+ * */
+#custom-cod-status.c0 {
+    color: #BF6161;
+}
+#custom-cod-status.c1 {
+    color: #BE6161;
+}
+#custom-cod-status.c2 {
+    color: #BE6361;
+}
+#custom-cod-status.c3 {
+    color: #BE6562;
+}
+#custom-cod-status.c4 {
+    color: #BE6762;
+}
+#custom-cod-status.c5 {
+    color: #BE6963;
+}
+#custom-cod-status.c6 {
+    color: #BE6B63;
+}
+#custom-cod-status.c7 {
+    color: #BE6D64;
+}
+#custom-cod-status.c8 {
+    color: #BE6F64;
+}
+#custom-cod-status.c9 {
+    color: #BE7165;
+}
+#custom-cod-status.c10 {
+    color: #BE7265;
+}
+#custom-cod-status.c11 {
+    color: #BE7466;
+}
+#custom-cod-status.c12 {
+    color: #BE7666;
+}
+#custom-cod-status.c13 {
+    color: #BE7666;
+}
+#custom-cod-status.c14 {
+    color: #BE7867;
+}
+#custom-cod-status.c15 {
+    color: #BE7A67;
+}
+#custom-cod-status.c16 {
+    color: #BE7C68;
+}
+#custom-cod-status.c17 {
+    color: #BE7E68;
+}
+#custom-cod-status.c18 {
+    color: #BE7F69;
+}
+#custom-cod-status.c19 {
+    color: #BE8169;
+}
+#custom-cod-status.c20 {
+    color: #BE836A;
+}
+#custom-cod-status.c21 {
+    color: #BE856A;
+}
+#custom-cod-status.c22 {
+    color: #BE866A;
+}
+#custom-cod-status.c23 {
+    color: #BE886B;
+}
+#custom-cod-status.c24 {
+    color: #BE8A6B;
+}
+#custom-cod-status.c25 {
+    color: #BE8B6C;
+}
+#custom-cod-status.c26 {
+    color: #BE8B6C;
+}
+#custom-cod-status.c27 {
+    color: #BE8D6D;
+}
+#custom-cod-status.c28 {
+    color: #BE8F6D;
+}
+#custom-cod-status.c29 {
+    color: #BE906E;
+}
+#custom-cod-status.c30 {
+    color: #BE926E;
+}
+#custom-cod-status.c31 {
+    color: #BE936E;
+}
+#custom-cod-status.c32 {
+    color: #BE956F;
+}
+#custom-cod-status.c33 {
+    color: #BD966F;
+}
+#custom-cod-status.c34 {
+    color: #BD9870;
+}
+#custom-cod-status.c35 {
+    color: #BD9970;
+}
+#custom-cod-status.c36 {
+    color: #BD9B71;
+}
+#custom-cod-status.c37 {
+    color: #BD9C71;
+}
+#custom-cod-status.c38 {
+    color: #BD9D72;
+}
+#custom-cod-status.c39 {
+    color: #BD9E72;
+}
+#custom-cod-status.c40 {
+    color: #BD9F72;
+}
+#custom-cod-status.c41 {
+    color: #BDA173;
+}
+#custom-cod-status.c42 {
+    color: #BDA273;
+}
+#custom-cod-status.c43 {
+    color: #BDA474;
+}
+#custom-cod-status.c44 {
+    color: #BDA574;
+}
+#custom-cod-status.c45 {
+    color: #BDA675;
+}
+#custom-cod-status.c46 {
+    color: #BDA875;
+}
+#custom-cod-status.c47 {
+    color: #BDA975;
+}
+#custom-cod-status.c48 {
+    color: #BDAA76;
+}
+#custom-cod-status.c49 {
+    color: #BDAC76;
+}
+#custom-cod-status.c50 {
+    color: #BDAD77;
+}
+#custom-cod-status.c51 {
+    color: #BDAD77;
+}
+#custom-cod-status.c52 {
+    color: #BDAE78;
+}
+#custom-cod-status.c53 {
+    color: #BDAF78;
+}
+#custom-cod-status.c54 {
+    color: #BDB178;
+}
+#custom-cod-status.c55 {
+    color: #BDB279;
+}
+#custom-cod-status.c56 {
+    color: #BDB379;
+}
+#custom-cod-status.c57 {
+    color: #BDB47A;
+}
+#custom-cod-status.c58 {
+    color: #BDB57A;
+}
+#custom-cod-status.c59 {
+    color: #BDB77B;
+}
+#custom-cod-status.c60 {
+    color: #BDB87B;
+}
+#custom-cod-status.c61 {
+    color: #BDB97B;
+}
+#custom-cod-status.c62 {
+    color: #BDBA7C;
+}
+#custom-cod-status.c63 {
+    color: #BDBA7C;
+}
+#custom-cod-status.c64 {
+    color: #BDBB7D;
+}
+#custom-cod-status.c65 {
+    color: #BDBC7D;
+}
+#custom-cod-status.c66 {
+    color: #BDBD7E;
+}
+#custom-cod-status.c67 {
+    color: #BCBD7E;
+}
+#custom-cod-status.c68 {
+    color: #BBBD7E;
+}
+#custom-cod-status.c69 {
+    color: #BABD7F;
+}
+#custom-cod-status.c70 {
+    color: #B9BD7F;
+}
+#custom-cod-status.c71 {
+    color: #B8BD80;
+}
+#custom-cod-status.c72 {
+    color: #B7BD80;
+}
+#custom-cod-status.c73 {
+    color: #B6BD80;
+}
+#custom-cod-status.c74 {
+    color: #B5BD81;
+}
+#custom-cod-status.c75 {
+    color: #B4BD81;
+}
+#custom-cod-status.c76 {
+    color: #B4BD82;
+}
+#custom-cod-status.c77 {
+    color: #B3BD82;
+}
+#custom-cod-status.c78 {
+    color: #B2BD83;
+}
+#custom-cod-status.c79 {
+    color: #B2BD83;
+}
+#custom-cod-status.c80 {
+    color: #B1BD83;
+}
+#custom-cod-status.c81 {
+    color: #B0BD84;
+}
+#custom-cod-status.c82 {
+    color: #AFBD84;
+}
+#custom-cod-status.c83 {
+    color: #AEBD85;
+}
+#custom-cod-status.c84 {
+    color: #ADBD85;
+}
+#custom-cod-status.c85 {
+    color: #ADBD85;
+}
+#custom-cod-status.c86 {
+    color: #ACBD86;
+}
+#custom-cod-status.c87 {
+    color: #ABBD86;
+}
+#custom-cod-status.c88 {
+    color: #ABBD87;
+}
+#custom-cod-status.c89 {
+    color: #AABD87;
+}
+#custom-cod-status.c90 {
+    color: #AABD87;
+}
+#custom-cod-status.c91 {
+    color: #A9BD88;
+}
+#custom-cod-status.c92 {
+    color: #A8BD88;
+}
+#custom-cod-status.c93 {
+    color: #A7BD89;
+}
+#custom-cod-status.c94 {
+    color: #A7BD89;
+}
+#custom-cod-status.c95 {
+    color: #A6BD89;
+}
+#custom-cod-status.c96 {
+    color: #A5BD8A;
+}
+#custom-cod-status.c97 {
+    color: #A5BD8A;
+}
+#custom-cod-status.c98 {
+    color: #A4BD8B;
+}
+#custom-cod-status.c99 {
+    color: #A3BD8B;
+}
+#custom-cod-status.c100 {
+    color: #A3BE8C;
 }

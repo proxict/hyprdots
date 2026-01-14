@@ -1,0 +1,10 @@
+{
+    "custom/cod-status": {
+        "exec": "~/.config/waybar/scripts/up-status",
+        "interval": 20,
+        "return-type": "json",
+        "format": " {text}",
+        "tooltip": false,
+        "on-click": "notify-send \" [UP] S&D 1:\" \"$(up-scoreboard 28960)\"",
+    }
+}
