@@ -27,7 +27,7 @@
     sort = yes
 
     idle_threshold = 120
-    font = Monospace 10
+    font = 0xProto Nerd Font Propo 10
     line_height = 0
     markup = full
 
