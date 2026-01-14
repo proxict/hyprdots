@@ -172,7 +172,7 @@ label:focus {
 
 #cpu {
     background-color: #2ecc71;
-    color: #ffffff;
+    color: #000000;
 }
 
 #memory {
@@ -246,7 +246,7 @@ label:focus {
 
 #language {
     background: #00b093;
-    color: #ffffff;
+    color: #000000;
     padding: 0 5px;
     margin: 0;
     min-width: 34px;
