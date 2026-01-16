@@ -87,6 +87,7 @@ button:hover {
 #custom-vpn,
 #custom-wayprsunset-temp,
 #network,
+#custom-pacman,
 #pulseaudio,
 #wireplumber,
 #custom-media,
@@ -203,6 +204,10 @@ label:focus {
 
 #network.disconnected {
     background-color: #f53c3c;
+}
+
+#custom-pacman {
+	background-color: #252525;
 }
 
 #pulseaudio {

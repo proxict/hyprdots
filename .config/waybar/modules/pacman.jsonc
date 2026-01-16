@@ -1,0 +1,16 @@
+{
+    "custom/pacman": {
+        "exec": "~/.config/waybar/scripts/pacman",
+        "interval": 3600,
+        "signal": 1, // pkill -SIGRTMIN+1 waybar
+        "return-type": "json",
+        "format": "{icon} {text}",
+        "tooltip": false,
+        "format-icons": {
+            "outdated": "<span foreground='#A3BE8C'></span>",
+            "updated": "<span foreground='#BF6161'></span>",
+        },
+        "on-click": "pacman-update-hook",
+        "on-click-right": "pacman-update-hook && notify-send \" Pacman Updates:\" \"$(checkupdates | awk '{print $1}')\""
+    }
+}
