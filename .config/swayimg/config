@@ -211,7 +211,7 @@ f = flip_horizontal
 a = antialiasing
 r = reload
 i = info
-Shift+Delete = exec rm -f '%' && echo "File removed: %"; skip_file
+Shift+Delete = exec rm -f '%' && echo "File removed: %"
 Escape = exit
 q = exit
 # Mouse related
@@ -279,7 +279,7 @@ i = info
 Equal = none
 Shift+plus = thumb +20
 Minus = thumb -20
-Shift+Delete = exec rm -f '%' && echo "File removed: %"; skip_file
+Shift+Delete = exec rm -f '%' && echo "File removed: %"
 Escape = exit
 q = exit
 # Mouse related
