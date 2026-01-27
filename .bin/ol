@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+ACTIVE_WIN_LAYOUT="$(hyprctl activewindow -j | jq '{at, size}')"
+POSITION="$(jq -r '.at | "\(.[0]) \(.[1])"' <<< "$ACTIVE_WIN_LAYOUT")"
+SIZE="$(jq -r '.size | "\(.[0]) \(.[1])"' <<< "$ACTIVE_WIN_LAYOUT")"
+
+hyprctl -q dispatch exec "[float on; move ${POSITION}; size ${SIZE}]" "$@"
