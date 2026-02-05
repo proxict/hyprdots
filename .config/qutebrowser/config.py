@@ -770,6 +770,12 @@ c.downloads.remove_finished = 2000
 ## Type: ShellCommand
 c.editor.command = ["kitty", "-e", "nvim", "{file}", "-c", "normal {line}G{column0}l"]
 
+## File select configuration
+c.fileselect.handler = 'external'
+c.fileselect.folder.command = ["zenity", "--file-selection", "--directory"]
+c.fileselect.single_file.command = ["zenity", "--file-selection"]
+c.fileselect.multiple_files.command = ["zenity", "--file-selection", "--multiple"]
+
 ## Encoding to use for the editor.
 ## Type: Encoding
 c.editor.encoding = 'utf-8'
