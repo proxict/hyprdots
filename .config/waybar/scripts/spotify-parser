@@ -36,9 +36,9 @@ build-text() {
     [ -n "${ALBUM}" ]  && TEXT="${TEXT}${DELIM}${ALBUM}"  && DELIM=" - "
     [ -n "${TITLE}" ]  && TEXT="${TEXT}${DELIM}${TITLE}"  && DELIM=" - "
 
-    TEXT="${TEXT//&lt/<}"
-    TEXT="${TEXT//&gt/>}"
-    TEXT="${TEXT//&amp/\&}"
+    #TEXT="${TEXT//&lt/<}"
+    #TEXT="${TEXT//&gt/>}"
+    #TEXT="${TEXT//&amp/\&}"
 
     REPLY="${TEXT}"
 }
