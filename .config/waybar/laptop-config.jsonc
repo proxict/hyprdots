@@ -1,0 +1,76 @@
+// -*- mode: jsonc -*-
+{
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "hyprland/scratchpad",
+        "custom/spotify-prev",
+        "custom/spotify",
+        "custom/spotify-next"
+    ],
+    "modules-center": [
+    ],
+    "modules-right": [
+        "hyprland/language",
+        "cpu",
+        "temperature",
+        "memory",
+        "battery",
+        "network",
+        "custom/vpn",
+        "group/screen",
+        "custom/pacman",
+        "pulseaudio#mic",
+        "pulseaudio#vol",
+        "clock",
+        "tray"
+    ],
+
+    // Module overrides
+    "hyprland/language": {
+        "keyboard-name": "at-translated-set-2-keyboard"
+    },
+    "custom/spotify": {
+        "exec": "~/.config/waybar/scripts/spotify 60", // Text will be scrolled after 60 characters
+        "max-length": 60,
+        "smooth-scrolling-threshold": 2
+    },
+    "group/screen": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "transition-left-to-right": false,
+            "children-class": "screen"
+        },
+        "modules": [
+            "backlight",
+            "custom/wayprsunset-temp"
+        ]
+    },
+    "custom/wayprsunset-temp": {
+        "smooth-scrolling-threshold": 2
+    },
+    "pulseaudio#vol": {
+        "smooth-scrolling-threshold": 2
+    },
+    "include": [
+        "common.jsonc",
+        "modules/spotify.jsonc",
+        "modules/workspaces.jsonc",
+        "modules/scratchpad.jsonc",
+        "modules/language.jsonc",
+        "modules/cpu.jsonc",
+        "modules/temperature.jsonc",
+        "modules/memory.jsonc",
+        "modules/battery.jsonc",
+        "modules/network.jsonc",
+        "modules/vpn.jsonc",
+        "modules/backlight.jsonc",
+        "modules/wayprsunset-temp.jsonc",
+        "modules/pacman.jsonc",
+        "modules/microphone.jsonc",
+        "modules/volume.jsonc",
+        "modules/clock.jsonc",
+        "modules/tray.jsonc"
+    ]
+}
