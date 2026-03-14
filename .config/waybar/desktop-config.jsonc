@@ -1,0 +1,58 @@
+// -*- mode: jsonc -*-
+{
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "hyprland/scratchpad"
+    ],
+    "modules-center": [
+        "custom/spotify-prev",
+        "custom/spotify",
+        "custom/spotify-next"
+    ],
+    "modules-right": [
+        "custom/cod-status",
+        "hyprland/language",
+        "cpu",
+        "temperature",
+        "memory",
+        "network",
+        "custom/vpn",
+        "custom/wayprsunset-temp",
+        "custom/pacman",
+        "pulseaudio#mic",
+        "pulseaudio#vol",
+        "clock",
+        "tray"
+    ],
+
+    // Module overrides
+    "hyprland/language": {
+        "keyboard-name": "usb-keyboard"
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input"
+    },
+    "network": {
+        "format-ethernet": "",
+    },
+    "include": [
+        "common.jsonc",
+        "modules/spotify.jsonc",
+        "modules/cod-status.jsonc",
+        "modules/workspaces.jsonc",
+        "modules/scratchpad.jsonc",
+        "modules/language.jsonc",
+        "modules/cpu.jsonc",
+        "modules/temperature.jsonc",
+        "modules/memory.jsonc",
+        "modules/network.jsonc",
+        "modules/vpn.jsonc",
+        "modules/wayprsunset-temp.jsonc",
+        "modules/pacman.jsonc",
+        "modules/microphone.jsonc",
+        "modules/volume.jsonc",
+        "modules/clock.jsonc",
+        "modules/tray.jsonc"
+    ]
+}
