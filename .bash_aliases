@@ -3,6 +3,7 @@
 alias svim='sudo -E nvim'
 alias cfix='sudo udevadm trigger --subsystem-match=input --action=change'
 alias sxiv='swayimg'
+alias img='swayimg'
 alias pdf='ol zathura'
 alias clipboard='wl-copy 2>/dev/null'
 
