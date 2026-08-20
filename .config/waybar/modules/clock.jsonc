@@ -4,6 +4,6 @@
         "interval": 1,
         "format": " {:%H:%M:%S}",
         "tooltip": false,
-        "on-click": "hyprctl dispatch exec '[move (cursor_x-window_w) 35] gsimplecal'"
+        "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"[move (cursor_x-window_w) 35] gsimplecal\")'"
     }
 }

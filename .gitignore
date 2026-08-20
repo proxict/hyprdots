@@ -30,6 +30,9 @@
 /.config/hypr/modules/env.conf
 /.config/hypr/modules/monitors.conf
 /.config/hypr/modules/devices.conf
+/.config/hypr/modules/env.lua
+/.config/hypr/modules/monitors.lua
+/.config/hypr/modules/devices.lua
 
 !/.config/systemd
 /.config/systemd/*/*

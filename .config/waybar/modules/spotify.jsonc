@@ -10,8 +10,8 @@
         "max-length": 100,
         "hide-empty-text": true,
         "on-click": "playerctl --player=spotify play-pause",
-        "on-click-right": "hyprctl dispatch focuswindow class:^Spotify$",
-        "on-click-middle": "hyprctl dispatch focuswindow class:^Spotify$",
+        "on-click-right": "hyprctl dispatch 'hl.dsp.focus({window = \"class:^Spotify$\"})'",
+        "on-click-middle": "hyprctl dispatch 'hl.dsp.focus({window = \"class:^Spotify$\"})'",
         "on-scroll-down": "playerctl --player=spotify volume 0.05-",
         "on-scroll-up": "playerctl --player=spotify volume 0.05+"
     },

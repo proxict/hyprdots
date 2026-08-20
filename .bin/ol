@@ -4,4 +4,6 @@ ACTIVE_WIN_LAYOUT="$(hyprctl activewindow -j | jq '{at, size}')"
 POSITION="$(jq -r '.at | "\(.[0]) \(.[1])"' <<< "$ACTIVE_WIN_LAYOUT")"
 SIZE="$(jq -r '.size | "\(.[0]) \(.[1])"' <<< "$ACTIVE_WIN_LAYOUT")"
 
-hyprctl -q dispatch exec "[float on; move ${POSITION}; size ${SIZE}]" "$@"
+# https://stackoverflow.com/a/12985353
+ARGS=("$@")
+hyprctl dispatch "hl.dsp.exec_cmd(\"[float on; move ${POSITION}; size ${SIZE}] ${ARGS[*]@Q}\")"
