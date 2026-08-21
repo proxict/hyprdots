@@ -8,7 +8,7 @@ end
 
 function scaleUp()
   local pos = swayimg.get_mouse_pos()
-  local scale = swayimg.viewer.get_scale()
+  local scale = swayimg.viewer.scale
   -- swayimg.text.set_status("Scale "..scale)
   scale = scale + scale / 10
   swayimg.viewer.set_abs_scale(scale, pos.x, pos.y);
@@ -16,7 +16,7 @@ end
 
 function scaleDown()
   local pos = swayimg.get_mouse_pos()
-  local scale = swayimg.viewer.get_scale()
+  local scale = swayimg.viewer.scale
   -- swayimg.text.set_status("Scale "..scale)
   scale = scale - scale / 10
   swayimg.viewer.set_abs_scale(scale, pos.x, pos.y);
@@ -27,34 +27,34 @@ end
 -- Gallery mode
 ------------------------------------------------------
 swayimg.gallery.on_key("Return", function()
-  swayimg.set_mode("viewer")
+  swayimg.mode = "viewer"
 end)
 swayimg.gallery.on_mouse("MouseLeft", function()
-  swayimg.set_mode("viewer")
+  swayimg.mode = "viewer"
 end)
 
 swayimg.gallery.on_key("s", function()
-  swayimg.set_mode("slideshow")
+  swayimg.mode = "slideshow"
 end)
 
-swayimg.gallery.on_key("Left", function() swayimg.gallery.switch_image("left") end)
-swayimg.gallery.on_key("Right", function() swayimg.gallery.switch_image("right") end)
-swayimg.gallery.on_key("Up", function() swayimg.gallery.switch_image("up") end)
-swayimg.gallery.on_key("Down", function() swayimg.gallery.switch_image("down") end)
+swayimg.gallery.on_key("Left", function() swayimg.gallery.select("left") end)
+swayimg.gallery.on_key("Right", function() swayimg.gallery.select("right") end)
+swayimg.gallery.on_key("Up", function() swayimg.gallery.select("up") end)
+swayimg.gallery.on_key("Down", function() swayimg.gallery.select("down") end)
 --
-swayimg.gallery.on_key("h", function() swayimg.gallery.switch_image("left") end)
-swayimg.gallery.on_key("l", function() swayimg.gallery.switch_image("right") end)
-swayimg.gallery.on_key("k", function() swayimg.gallery.switch_image("up") end)
-swayimg.gallery.on_key("j", function() swayimg.gallery.switch_image("down") end)
+swayimg.gallery.on_key("h", function() swayimg.gallery.select("left") end)
+swayimg.gallery.on_key("l", function() swayimg.gallery.select("right") end)
+swayimg.gallery.on_key("k", function() swayimg.gallery.select("up") end)
+swayimg.gallery.on_key("j", function() swayimg.gallery.select("down") end)
 
-swayimg.gallery.on_key("g", function() swayimg.gallery.switch_image("first") end)
-swayimg.gallery.on_key("Shift+G", function() swayimg.gallery.switch_image("last") end)
+swayimg.gallery.on_key("g", function() swayimg.gallery.select("first") end)
+swayimg.gallery.on_key("Shift+G", function() swayimg.gallery.select("last") end)
 
-swayimg.gallery.on_key("Home", function() swayimg.gallery.switch_image("first") end)
-swayimg.gallery.on_key("End", function() swayimg.gallery.switch_image("last") end)
+swayimg.gallery.on_key("Home", function() swayimg.gallery.select("first") end)
+swayimg.gallery.on_key("End", function() swayimg.gallery.select("last") end)
 
-swayimg.gallery.on_key("Prior", function() swayimg.gallery.switch_image("first") end)
-swayimg.gallery.on_key("Next", function() swayimg.gallery.switch_image("last") end)
+swayimg.gallery.on_key("Prior", function() swayimg.gallery.select("first") end)
+swayimg.gallery.on_key("Next", function() swayimg.gallery.select("last") end)
 
 swayimg.gallery.on_key("Shift+plus", function()
   local size = swayimg.gallery.get_thumb_size()
@@ -85,16 +85,16 @@ end)
 -- Viewer mode
 ------------------------------------------------------
 swayimg.viewer.on_key("Return", function()
-  swayimg.set_mode("gallery")
+  swayimg.mode = "gallery"
 end)
 
-swayimg.viewer.on_key("Left", function() swayimg.viewer.switch_image("prev") end)
-swayimg.viewer.on_key("Right", function() swayimg.viewer.switch_image("next") end)
-swayimg.viewer.on_key("h", function() swayimg.viewer.switch_image("prev") end)
-swayimg.viewer.on_key("l", function() swayimg.viewer.switch_image("next") end)
+swayimg.viewer.on_key("Left", function() swayimg.viewer.open("prev") end)
+swayimg.viewer.on_key("Right", function() swayimg.viewer.open("next") end)
+swayimg.viewer.on_key("h", function() swayimg.viewer.open("prev") end)
+swayimg.viewer.on_key("l", function() swayimg.viewer.open("next") end)
 
-swayimg.viewer.on_key("Home", function() swayimg.viewer.switch_image("first") end)
-swayimg.viewer.on_key("End", function() swayimg.viewer.switch_image("last") end)
+swayimg.viewer.on_key("Home", function() swayimg.viewer.open("first") end)
+swayimg.viewer.on_key("End", function() swayimg.viewer.open("last") end)
 
 function stepLeft()
   local wnd = swayimg.get_window_size()
@@ -190,16 +190,16 @@ swayimg.viewer.on_key("n", function() swayimg.viewer.animation_resume() end)
 -- Slideshow mode
 ------------------------------------------------------
 swayimg.slideshow.on_key("Return", function()
-  swayimg.set_mode("gallery")
+  swayimg.mode = "gallery"
 end)
 
-swayimg.slideshow.on_key("Left", function() swayimg.slideshow.switch_image("prev") end)
-swayimg.slideshow.on_key("Right", function() swayimg.slideshow.switch_image("next") end)
-swayimg.slideshow.on_key("h", function() swayimg.slideshow.switch_image("prev") end)
-swayimg.slideshow.on_key("l", function() swayimg.slideshow.switch_image("next") end)
+swayimg.slideshow.on_key("Left", function() swayimg.slideshow.open("prev") end)
+swayimg.slideshow.on_key("Right", function() swayimg.slideshow.open("next") end)
+swayimg.slideshow.on_key("h", function() swayimg.slideshow.open("prev") end)
+swayimg.slideshow.on_key("l", function() swayimg.slideshow.open("next") end)
 
-swayimg.slideshow.on_key("Home", function() swayimg.slideshow.switch_image("first") end)
-swayimg.slideshow.on_key("End", function() swayimg.slideshow.switch_image("last") end)
+swayimg.slideshow.on_key("Home", function() swayimg.slideshow.open("first") end)
+swayimg.slideshow.on_key("End", function() swayimg.slideshow.open("last") end)
 
 ------------------------------------------------------
 -- Common
@@ -210,7 +210,7 @@ for _i, mode in ipairs(modes) do
     if mode == swayimg.gallery then
       swayimg.exit()
     else
-      swayimg.set_mode("gallery")
+      swayimg.mode = "gallery"
     end
   end)
 
