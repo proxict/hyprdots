@@ -6,9 +6,9 @@
         "hyprland/scratchpad"
     ],
     "modules-center": [
-        "custom/spotify-prev",
-        "custom/spotify",
-        "custom/spotify-next"
+        "custom/audio-player-prev",
+        "custom/audio-player",
+        "custom/audio-player-next"
     ],
     "modules-right": [
         "custom/cod-status",
@@ -38,7 +38,7 @@
     },
     "include": [
         "common.jsonc",
-        "modules/spotify.jsonc",
+        "modules/audio-player.jsonc",
         "modules/cod-status.jsonc",
         "modules/workspaces.jsonc",
         "modules/scratchpad.jsonc",

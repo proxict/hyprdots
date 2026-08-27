@@ -4,9 +4,9 @@
         "hyprland/workspaces",
         "hyprland/submap",
         "hyprland/scratchpad",
-        "custom/spotify-prev",
-        "custom/spotify",
-        "custom/spotify-next"
+        "custom/audio-player-prev",
+        "custom/audio-player",
+        "custom/audio-player-next"
     ],
     "modules-center": [
     ],
@@ -30,8 +30,8 @@
     "hyprland/language": {
         "keyboard-name": "at-translated-set-2-keyboard"
     },
-    "custom/spotify": {
-        "exec": "~/.config/waybar/scripts/spotify 60", // Text will be scrolled after 60 characters
+    "custom/audio-player": {
+        "exec": "~/.config/waybar/scripts/audio-player 60", // Text will be scrolled after 60 characters
         "max-length": 60,
         "smooth-scrolling-threshold": 2
     },
@@ -55,7 +55,7 @@
     },
     "include": [
         "common.jsonc",
-        "modules/spotify.jsonc",
+        "modules/audio-player.jsonc",
         "modules/workspaces.jsonc",
         "modules/scratchpad.jsonc",
         "modules/language.jsonc",

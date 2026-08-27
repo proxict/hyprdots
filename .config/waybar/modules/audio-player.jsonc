@@ -1,0 +1,28 @@
+{
+    "custom/audio-player": {
+        "exec": "~/.config/waybar/scripts/audio-player 100", // Text will be scrolled after 100 characters
+        "return-type": "json",
+        "format": "{text}",
+        "max-length": 100,
+        "hide-empty-text": true,
+        "on-click": "playerctl --player=spotify,Plexamp play-pause",
+        "on-click-right": "~/.config/waybar/scripts/audio-player-focus",
+        "on-click-middle": "~/.config/waybar/scripts/audio-player-focus",
+        "on-scroll-down": "playerctl --player=spotify,Plexamp volume 0.05-",
+        "on-scroll-up": "playerctl --player=spotify,Plexamp volume 0.05+"
+    },
+    "custom/audio-player-prev": {
+        "exec": "playerctl --player=spotify,Plexamp status --follow",
+        "hide-empty-text": true,
+        "tooltip": false,
+        "format": "",
+        "on-click": "playerctl --player=spotify,Plexamp previous"
+    },
+    "custom/audio-player-next": {
+        "exec": "playerctl --player=spotify,Plexamp status --follow",
+        "hide-empty-text": true,
+        "tooltip": false,
+        "format": "",
+        "on-click": "playerctl --player=spotify,Plexamp next"
+    }
+}

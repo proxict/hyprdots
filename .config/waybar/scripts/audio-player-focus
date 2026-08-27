@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+PLAYER="$(playerctl --player=spotify,Plexamp -l | head -n1)"
+
+case "${PLAYER,,}" in
+    spotify ) CLASS=Spotify ;;
+    plexamp ) CLASS=plexamp ;;
+esac
+
+[ -n "${CLASS}" ] && hyprctl dispatch "hl.dsp.focus({window = \"class:^${CLASS}\$\"})"

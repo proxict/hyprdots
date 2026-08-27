@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # MIT License
 # 
@@ -44,21 +44,20 @@ build-text() {
 }
 
 print-text() {
-    local TEXT="$1"
-    local COLOR="$2"
+    local ICON="$1"
+    local TEXT="$2"
     local TOOLTIP="$3"
 
     jq -M --unbuffered --compact-output -n \
-        --arg text "${TEXT}" \
-        --arg alt "${COLOR}" \
+        --arg text "${ICON} ${TEXT}" \
         --arg tooltip "${TOOLTIP}" \
-        --arg class "spotify-meta" \
-            '{text: $text, alt: $alt, tooltip: $tooltip, class: $class}'
+        --arg class "audio-meta" \
+            '{text: $text, tooltip: $tooltip, class: $class}'
 }
 
 scroll-text() {
-    local TEXT="$1"
-    local COLOR="$2"
+    local ICON="$1"
+    local TEXT="$2"
     local MAX_LEN="$3"
     local LEN=${#TEXT}
 
@@ -69,38 +68,48 @@ scroll-text() {
         (( SCROLL_INDEX > (LEN - MAX_LEN) )) && SCROLL_INDEX=0 && NEXT_SCROLL_TIMESTAMP="$(( TIME_MS + 1000 ))"
     fi
 
-    print-text "${TEXT:${SCROLL_INDEX}:${MAX_LEN}}" "${COLOR}" "${TEXT}"
+    print-text "${ICON}" "${TEXT:${SCROLL_INDEX}:${MAX_LEN}}" "${TEXT}"
 }
 
 main() {
     local MAX_LEN=${1:-80}
-    local STATUS ALBUM ARTIST TITLE TEXT COLOR
+    local PLAYERNAME STATUS ALBUM ARTIST TITLE TEXT COLOR
 
-    while IFS='␞' read -r STATUS ALBUM ARTIST TITLE; do
+    while IFS='␞' read -r PLAYERNAME STATUS ALBUM ARTIST TITLE; do
         build-text "${ARTIST}" "${ALBUM}" "${TITLE}"
         TEXT="${REPLY}"
         TEXT_LEN="${#TEXT}"
-        COLOR="red"
-        [ "${STATUS}" = "Playing" ] && COLOR="green"
+        COLOR="#BF6161"
+        [ "${STATUS}" = "Playing" ] && COLOR="#A3BE8C"
+
+        case "${PLAYERNAME,,}" in
+            spotify ) ICON="<span foreground='${COLOR}'></span>" ;;
+            plexamp ) ICON="<span foreground='${COLOR}'>󰚺</span>" ;;
+        esac
 
         if (( TEXT_LEN > MAX_LEN )); then
             while true; do
-                if IFS='␞' read -t 0.2 -r STATUS ALBUM ARTIST TITLE; then
+                if IFS='␞' read -t 0.2 -r PLAYERNAME STATUS ALBUM ARTIST TITLE; then
                     build-text "${ARTIST}" "${ALBUM}" "${TITLE}"
                     TEXT="${REPLY}"
                     TEXT_LEN="${#TEXT}"
                     if (( TEXT_LEN <= MAX_LEN )); then
-                        print-text "${TEXT}" "${COLOR}" "${TEXT}"
+                        print-text "${ICON}" "${TEXT}" "${TEXT}"
                         break
                     fi
 
-                    COLOR="red"
-                    [ "${STATUS}" = "Playing" ] && COLOR="green"
+                    COLOR="#BF6161"
+                    [ "${STATUS}" = "Playing" ] && COLOR="#A3BE8C"
+
+                    case "${PLAYERNAME,,}" in
+                        spotify ) ICON="<span foreground='${COLOR}'></span>" ;;
+                        plexamp ) ICON="<span foreground='${COLOR}'>󰚺</span>" ;;
+                    esac
                 fi
-                scroll-text "${TEXT}" "${COLOR}" "${MAX_LEN}"
+                scroll-text "${ICON}" "${TEXT}" "${MAX_LEN}"
             done
         else
-            print-text "${TEXT}" "${COLOR}" "${TEXT}"
+            print-text "${ICON}" "${TEXT}" "${TEXT}"
         fi
     done
 }

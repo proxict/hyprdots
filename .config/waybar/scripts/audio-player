@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # MIT License
 # 
@@ -22,4 +22,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-playerctl --player=spotify metadata --format '{{ markup_escape(status) }}␞{{ markup_escape(album) }}␞{{ markup_escape(artist) }}␞{{ markup_escape(title) }}' --follow 2> /dev/null | ~/.config/waybar/scripts/spotify-parser "$@"
+playerctl --player=spotify,Plexamp \
+    metadata \
+    --format '{{ markup_escape(playerName) }}␞{{ markup_escape(status) }}␞{{ markup_escape(album) }}␞{{ markup_escape(artist) }}␞{{ markup_escape(title) }}' \
+    --follow 2> /dev/null \
+    | ~/.config/waybar/scripts/audio-player-parser "$@"

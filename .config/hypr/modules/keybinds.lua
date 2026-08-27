@@ -112,10 +112,10 @@ hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ to
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n236 set 5%+"), { locked = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n236 set 5%-"), { locked = true })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl -p spotify,%any next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl -p spotify,%any play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl -p spotify,%any play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl -p spotify,%any previous"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl -p spotify,Plexamp,%any next"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl -p spotify,Plexamp,%any play-pause"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl -p spotify,Plexamp,%any play-pause"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl -p spotify,Plexamp,%any previous"), { locked = true })
 
 ---------------------
 --- NOTIFICATIONS ---
