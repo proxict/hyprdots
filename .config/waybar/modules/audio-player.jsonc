@@ -12,14 +12,14 @@
         "on-scroll-up": "playerctl --player=spotify,Plexamp volume 0.05+"
     },
     "custom/audio-player-prev": {
-        "exec": "playerctl --player=spotify,Plexamp status --follow",
+        "exec": "playerctl --player=spotify,Plexamp metadata --format '{{ markup_escape(status) }}' --follow",
         "hide-empty-text": true,
         "tooltip": false,
         "format": "",
         "on-click": "playerctl --player=spotify,Plexamp previous"
     },
     "custom/audio-player-next": {
-        "exec": "playerctl --player=spotify,Plexamp status --follow",
+        "exec": "playerctl --player=spotify,Plexamp metadata --format '{{ markup_escape(status) }}' --follow",
         "hide-empty-text": true,
         "tooltip": false,
         "format": "",
