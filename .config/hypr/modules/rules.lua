@@ -30,6 +30,15 @@ hl.window_rule({
     workspace = "name:",
 })
 
+-- Move Plexamp to its own workspace
+hl.window_rule({
+    name  = "plexamp-workspace",
+    match = {
+        class = "plexamp",
+    },
+    workspace = "name:󰚺",
+})
+
 -- Move TeamSpeak to its own workspace
 hl.window_rule({
     name  = "teamspeak-workspace",
