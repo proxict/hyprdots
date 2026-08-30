@@ -45,34 +45,25 @@ hl.bind(mod("down"), hl.dsp.focus({ direction = "down" }))
 ---------------------------
 --- WORKSPACE SWITCHING ---
 ---------------------------
-hl.bind(mod("1"), hl.dsp.focus({ workspace = 1 }))
-hl.bind(mod("2"), hl.dsp.focus({ workspace = 2 }))
-hl.bind(mod("3"), hl.dsp.focus({ workspace = 3 }))
-hl.bind(mod("4"), hl.dsp.focus({ workspace = 4 }))
-hl.bind(mod("5"), hl.dsp.focus({ workspace = 5 }))
-hl.bind(mod("6"), hl.dsp.focus({ workspace = 6 }))
-hl.bind(mod("7"), hl.dsp.focus({ workspace = 7 }))
-hl.bind(mod("8"), hl.dsp.focus({ workspace = 8 }))
-hl.bind(mod("9"), hl.dsp.focus({ workspace = 9 }))
-hl.bind(mod("0"), hl.dsp.focus({ workspace = 10 }))
-hl.bind(mod("T"), hl.dsp.focus({ workspace = "name:" }))
-hl.bind(mod("U"), hl.dsp.focus({ workspace = "name:󱞼" }))
+hl.bind(mod("Tab"), hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mod("SHIFT + Tab"), hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mod("mouse_down"), hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mod("mouse_up"), hl.dsp.focus({ workspace = "e-1" }))
 
----------------------
---- WINDOW MOVING ---
----------------------
-hl.bind(mod("SHIFT + 1"), hl.dsp.window.move({ workspace = 1 }, { follow = false }))
-hl.bind(mod("SHIFT + 2"), hl.dsp.window.move({ workspace = 2 }, { follow = false }))
-hl.bind(mod("SHIFT + 3"), hl.dsp.window.move({ workspace = 3 }, { follow = false }))
-hl.bind(mod("SHIFT + 4"), hl.dsp.window.move({ workspace = 4 }, { follow = false }))
-hl.bind(mod("SHIFT + 5"), hl.dsp.window.move({ workspace = 5 }, { follow = false }))
-hl.bind(mod("SHIFT + 6"), hl.dsp.window.move({ workspace = 6 }, { follow = false }))
-hl.bind(mod("SHIFT + 7"), hl.dsp.window.move({ workspace = 7 }, { follow = false }))
-hl.bind(mod("SHIFT + 8"), hl.dsp.window.move({ workspace = 8 }, { follow = false }))
-hl.bind(mod("SHIFT + 9"), hl.dsp.window.move({ workspace = 9 }, { follow = false }))
-hl.bind(mod("SHIFT + 0"), hl.dsp.window.move({ workspace = 10 }, { follow = false }))
-hl.bind(mod("SHIFT + T"), hl.dsp.window.move({ workspace = "name:" }, { follow = false }))
-hl.bind(mod("SHIFT + U"), hl.dsp.window.move({ workspace = "name:󱞼" }, { follow = false }))
+for i = 1, 10 do
+    local key = i % 10 -- 10 maps to key 0
+    hl.bind(mod(key), hl.dsp.focus({ workspace = i }))
+    hl.bind(mod("SHIFT + " .. key), hl.dsp.window.move({ workspace = i, follow = false }))
+end
+
+--------------------------
+--- SPECIAL WORKSPACES ---
+--------------------------
+hl.bind(mod("T"), hl.dsp.focus({ workspace = "name:" }))
+hl.bind(mod("SHIFT + T"), hl.dsp.window.move({ workspace = "name:", follow = false }))
+
+hl.bind(mod("U"), hl.dsp.focus({ workspace = "name:󱞼" }))
+hl.bind(mod("SHIFT + U"), hl.dsp.window.move({ workspace = "name:󱞼", follow = false }))
 
 -----------------------
 --- WINDOW RESIZING ---
