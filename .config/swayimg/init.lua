@@ -5,10 +5,7 @@ swayimg.gallery.bind_reset()
 swayimg.viewer.bind_reset()
 swayimg.slideshow.bind_reset()
 
-swayimg.viewer.set_text("topleft", {})
-swayimg.viewer.set_text("topright", {})
-swayimg.viewer.set_text("bottomleft", {})
-swayimg.viewer.set_text("bottomright", {})
+swayimg.viewer.text = { topleft = {}, topright = {}, bottomleft = {}, bottomright = {} }
 
 ------------------------------------------------------
 -- General config
@@ -55,22 +52,24 @@ swayimg.viewer.loop = false                -- enable image list loop mode
 swayimg.viewer.preload = 5                  -- number of images to preload
 swayimg.viewer.history = 5                  -- number of the history cache
 swayimg.viewer.mark_color = 0xff808080        -- mark icon color
-swayimg.viewer.set_text("topleft", {
-  "File: {name}",
-  "Format: {format}",
-  "File size: {sizehr}",
-  "File time: {time}",
-  "EXIF date: {meta.Exif.Photo.DateTimeOriginal}",
-  "EXIF camera: {meta.Exif.Image.Model}"
-})
-swayimg.viewer.set_text("topright", {
-  "Image: {list.index} of {list.total}",
-  "Frame: {frame.index} of {frame.total}",
-  "Size: {frame.width}x{frame.height}"
-})
-swayimg.viewer.set_text("bottomleft", {
-  "Scale: {scale}"
-})
+swayimg.viewer.text = {
+    topleft = {
+        "File: {name}",
+        "Format: {format}",
+        "File size: {sizehr}",
+        "File time: {time}",
+        "EXIF date: {meta.Exif.Photo.DateTimeOriginal}",
+        "EXIF camera: {meta.Exif.Image.Model}"
+    },
+    topright = {
+        "Image: {list.index} of {list.total}",
+        "Frame: {frame.index} of {frame.total}",
+        "Size: {frame.width}x{frame.height}"
+    },
+    bottomleft = {
+        "Scale: {scale}"
+    }
+}
 
 ------------------------------------------------------
 -- Slide show mode, same config as for viewer mode with the following defaults:
@@ -79,7 +78,7 @@ swayimg.slideshow.timeout = 5                    -- timeout to switch image
 swayimg.slideshow.default_scale = "fit"          -- default image scale
 swayimg.slideshow.set_window_background("auto")     -- window background mode
 swayimg.slideshow.history = 0                  -- number of the history cache
-swayimg.slideshow.set_text("topleft", { "{name}" }) -- top left text block scheme
+swayimg.slideshow.text = { topleft = { "{name}" } } -- top left text block scheme
 
 ------------------------------------------------------
 -- Gallery mode
@@ -96,8 +95,8 @@ swayimg.gallery.window_color = 0xff000000        -- window background color
 swayimg.gallery.cache = 100                    -- number of thumbnails stored in memory
 swayimg.gallery.preload = false               -- preloading invisible thumbnails
 swayimg.gallery.pstore = true                 -- enable persistent storage for thumbnails
-swayimg.gallery.set_text("bottomright", { "File: {name}" })
-swayimg.gallery.set_text("topright", { "{list.index} of {list.total}" })
+swayimg.gallery.text = { bottomright = { "File: {name}" } }
+swayimg.gallery.text = { topright = { "{list.index} of {list.total}" } }
 
 ------------------------------------------------------
 -- Miscellaneous
